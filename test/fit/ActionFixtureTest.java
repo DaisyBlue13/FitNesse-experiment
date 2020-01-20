@@ -62,6 +62,7 @@ public class ActionFixtureTest {
     assertTrue(getStringFor(table).contains("You must specify a fixture to start."));
   }
 
+
   @Test
   public void tryToStartABlankActor() throws Exception {
     Parse table = doTableOf(row("start", ""));
