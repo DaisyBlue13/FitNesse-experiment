@@ -140,7 +140,7 @@ test {
 }
 
 pitest {
-  targetClasses = ['fit.*', 'fitnesse.*']
+  targetClasses = ['fit'] //'fitnesse.*'
   pitestVersion = "1.4.3"
   threads = 1 // We can not deal with parallel execution yet
   outputFormats = ['XML', 'HTML']
