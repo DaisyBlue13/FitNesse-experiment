@@ -1,11 +1,13 @@
 package fit.decorator.performance;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.text.ParseException;
 
 import fit.Counts;
+import fit.Parse;
 import fit.decorator.FixtureDecoratorTestCase;
 import fit.decorator.exceptions.InvalidInputException;
 import fit.decorator.util.TestCaseHelper;
@@ -100,5 +102,40 @@ public class TimeRangeTest extends FixtureDecoratorTestCase {
       + "<tr><td>100</td><td>4</td><td>25</td></tr></table>";
     Counts expected = TestCaseHelper.counts(5, 0, 0, 0);
     executeAndAssert(expected, fitPage, new TimeRange(stopWatch));
+  }
+
+  @Test
+  public void updateColumnTest() throws Exception {
+    String fitPage = "<table><tr><td>fit.decorator.TimeRange</td><td>15</td><td>milliseconds min and max</td>"
+      + "<td>25</td><td>milliseconds</td></tr><tr><td>eg.Division</td></tr>"
+      + "<tr><td>numerator</td><td>denominator</td><td>quotient()</td></tr>"
+      + "<tr><td>10</td><td>2</td><td>5</td></tr><tr><td>12.6</td><td>3</td><td>4.2</td></tr>"
+      + "<tr><td>100</td><td>4</td><td>25</td></tr></table>";
+
+    TimeRange fixture = new TimeRange(stopWatch);
+    Parse parsedFitPage = new Parse(fitPage);
+    String before = getStringFor(parsedFitPage);
+    fixture.doTable(parsedFitPage);
+    String after = getStringFor(parsedFitPage);
+
+    // Count occurrences of "<hr>actual "
+    String strFind = "<hr>actual ";
+    int count = 0, fromIndex = 0;
+    while ((fromIndex = after.indexOf(strFind, fromIndex)) != -1 ) {
+      count++;
+      fromIndex++;
+    }
+
+    assertNotEquals(before, after);
+    assertEquals(count, 2);
+  }
+
+  private String getStringFor(Parse table) {
+    StringWriter stringWriter = new StringWriter();
+    PrintWriter out = new PrintWriter(stringWriter);
+    table.print(out);
+    out.flush();
+    out.close();
+    return stringWriter.toString();
   }
 }

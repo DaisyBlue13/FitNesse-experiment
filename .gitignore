@@ -28,3 +28,7 @@ junit*.properties
 FitNesseRoot/updateDoNotCopyOverList
 FitNesseRoot/updateList
 fitMutation/
+css/
+images/
+javascript/
+gradle/wrapper/gradle-wrapper.properties
