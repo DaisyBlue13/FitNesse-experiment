@@ -6,6 +6,7 @@ import fit.Parse;
 import fit.decorator.exceptions.InvalidInputException;
 import org.junit.Before;
 import org.junit.Test;
+import static org.junit.Assert.*; //I added
 
 public class TableTest {
   private String fitPage = "<table><tr><td>eg.Division</td></tr>"
@@ -149,6 +150,10 @@ public class TableTest {
     assertEquals(1, table.rowNumberContainingText("denominator"));
   }
 
+  /*
+  add test - table doesn't change, test not needed for the conditional bound mutations (?)
+  */
+  
   @Test
   public void testRowNumberContainingTextShouldThrowInvalidInputExceptionIfSearchTextIsNotFound() throws Exception {
     try {
