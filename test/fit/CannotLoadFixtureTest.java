@@ -31,6 +31,13 @@ public class CannotLoadFixtureTest {
   }
 
   @Test
+  public void testFixtureClassGo() throws Throwable {
+    WouldBeFixture wbFixture = new WouldBeFixture();
+
+    assertEquals(wbFixture.go(), "OK!");
+  }
+
+  @Test
   public void testFixtureClassNotEndingInFixtureDoesNotExtendFixture() throws Throwable {
     assertCannotLoadFixtureAfterChoppingOffFixture(
       "Successfully loaded a fixture that does not extend Fixture!",
