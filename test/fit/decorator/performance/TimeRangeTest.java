@@ -105,7 +105,7 @@ public class TimeRangeTest extends FixtureDecoratorTestCase {
   }
 
   @Test
-  public void updateColumnTest() throws Exception {
+  public void testUpdateColumns() throws Exception {
     String fitPage = "<table><tr><td>fit.decorator.TimeRange</td><td>15</td><td>milliseconds min and max</td>"
       + "<td>25</td><td>milliseconds</td></tr><tr><td>eg.Division</td></tr>"
       + "<tr><td>numerator</td><td>denominator</td><td>quotient()</td></tr>"
